@@ -115,7 +115,7 @@ AI 产品最大的风险是幻觉导致信任崩塌。每条 AI 回答下方列�
 
 ```bash
 npm install
-# 配置 .env 中的 VITE_DEEPSEEK_API_KEY
+# 复制 .env.example 为 .env，并填写 AI_BASE_URL / AI_API_KEY
 npm run dev
 ```
 
@@ -124,3 +124,33 @@ npm run dev
 ---
 
 **记着 · AI Memory Search · 个人项目 · 2026**
+---
+
+## Cloudflare Pages 部署
+
+构建配置：
+
+```text
+Build command: npm run build
+Build output directory: dist
+Root directory: /
+```
+
+Cloudflare Pages 环境变量需要填写：
+
+```text
+AI_BASE_URL=https://your-provider.example/v1
+AI_API_KEY=your_api_key_here
+VITE_AI_MODEL=gpt-5.5
+VITE_AI_TEXT_MODEL=gpt-5.5
+VITE_AI_VISION_MODEL=gpt-5.5
+```
+
+如果图片识别和文本模型使用不同中转站，再额外填写：
+
+```text
+AI_VISION_BASE_URL=https://your-vision-provider.example/v1
+AI_VISION_API_KEY=your_vision_api_key_here
+```
+
+注意：真实 API key 只放 Cloudflare Pages 的环境变量，不要提交到 GitHub，也不要写进前端代码。

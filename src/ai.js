@@ -1,5 +1,5 @@
 const TEXT_MODEL = import.meta.env.VITE_AI_TEXT_MODEL || import.meta.env.VITE_AI_MODEL || "gpt-5.5";
-const VISION_MODEL = import.meta.env.VITE_AI_VISION_MODEL || "";
+const VISION_MODEL = import.meta.env.VITE_AI_VISION_MODEL || import.meta.env.VITE_AI_MODEL || TEXT_MODEL;
 
 const MEMORY_JSON_SHAPE = '{"title":"简短标题不超过20字","summary":"一句话摘要不超过80字","searchableText":"可搜索全文或图片内容说明","tags":["标签1","标签2","标签3"],"entities":{},"category1":"一级分类","category2":"二级分类","importance":3}';
 
@@ -42,7 +42,7 @@ export async function generateAIContent(text) {
 
 export async function generateImageMemory(base64) {
   if (!base64) return fallback("");
-  if (!VISION_MODEL) throw new Error("图片模型未配置：请填写 AI_VISION_BASE_URL 和 VITE_AI_VISION_MODEL");
+  if (!VISION_MODEL) throw new Error("图片模型未配置：请填写 VITE_AI_MODEL 或 VITE_AI_VISION_MODEL");
 
   try {
     const raw = await chatCompletion({
