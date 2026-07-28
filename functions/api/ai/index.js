@@ -36,12 +36,8 @@ function buildAiRequest(body, env) {
   const upstreamBody = { ...body };
   delete upstreamBody._route;
 
-  const baseUrl = (
-    env[`AI_${route}_BASE_URL`] ||
-    env.AI_BASE_URL ||
-    ""
-  ).replace(/\/$/, "");
-  const apiKey = env[`AI_${route}_API_KEY`] || env.AI_API_KEY;
+  const baseUrl = firstEnv(env, [`AI_${route}_BASE_URL`, "AI_BASE_URL"]);
+  const apiKey = firstEnv(env, [`AI_${route}_API_KEY`, "AI_API_KEY"]);
 
   if (!baseUrl) throw new Error(`Missing AI_${route}_BASE_URL or AI_BASE_URL`);
   if (!apiKey) throw new Error(`Missing AI_${route}_API_KEY or AI_API_KEY`);
@@ -54,6 +50,28 @@ function buildAiRequest(body, env) {
     },
     body: upstreamBody,
   };
+}
+
+function firstEnv(env, names) {
+  for (const name of names) {
+    const value = cleanEnvValue(env[name], name);
+    if (value) return value;
+  }
+  return "";
+}
+
+function cleanEnvValue(value, name) {
+  let next = String(value || "").trim();
+  if (!next) return "";
+
+  next = next.replace(/^['"]|['"]$/g, "").trim();
+  const ownPrefix = `${name}=`;
+  if (next.startsWith(ownPrefix)) next = next.slice(ownPrefix.length).trim();
+
+  const genericPrefix = next.match(/^[A-Z0-9_]+=(.+)$/);
+  if (genericPrefix) next = genericPrefix[1].trim();
+
+  return next.replace(/\/+$/, "");
 }
 
 function chatCompletionsUrl(baseUrl) {
