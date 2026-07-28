@@ -1,0 +1,260 @@
+﻿<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>记着 — 产品原型图</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:"PingFang SC","Microsoft YaHei",sans-serif;background:#f5f5f4;color:#1c1917;padding:40px}
+h1{font-size:24px;font-weight:700;margin-bottom:4px;text-align:center}
+.sub{font-size:13px;color:#78716c;text-align:center;margin-bottom:40px}
+
+/* Flow */
+.flow-section{margin-bottom:48px}
+.flow-title{font-size:15px;font-weight:700;color:#0f766e;margin-bottom:6px;text-align:center}
+.flow-desc{font-size:12px;color:#78716c;text-align:center;margin-bottom:20px}
+.screens{display:flex;gap:20px;justify-content:center;flex-wrap:wrap;align-items:flex-start}
+.arrow{display:flex;align-items:center;font-size:24px;color:#a8a29e;flex-shrink:0}
+@media(max-width:900px){.arrow{display:none}}
+
+/* Screen mockup */
+.screen{background:#fff;border:1px solid #e7e5e4;border-radius:8px;overflow:hidden;width:280px;flex-shrink:0;box-shadow:0 1px 3px rgba(0,0,0,0.04)}
+.screen .topbar{background:#fafaf9;padding:8px 12px;border-bottom:1px solid #e7e5e4;display:flex;justify-content:space-between;align-items:center}
+.screen .topbar .title{font-size:11px;font-weight:600;color:#1c1917}
+.screen .topbar .dot{width:6px;height:6px;border-radius:50%;background:#d1d5db}
+.screen .body{padding:16px}
+.screen .label{font-size:10px;color:#9ca3af;text-transform:uppercase;letter-spacing:0.05em;margin-bottom:8px}
+
+/* Wireframe elements */
+.wf-input{width:100%;height:40px;border:1.5px dashed #d1d5db;border-radius:8px;background:#fafaf9;margin-bottom:12px}
+.wf-card{width:100%;height:60px;border:1.5px dashed #d1d5db;border-radius:6px;background:#fafaf9;margin-bottom:8px;display:flex;align-items:center;padding:8px 12px;gap:10px}
+.wf-card .thumb{width:40px;height:40px;border-radius:4px;background:#e7e5e4;flex-shrink:0}
+.wf-card .lines{flex:1}
+.wf-card .line{height:6px;background:#e7e5e4;border-radius:3px;margin-bottom:4px}
+.wf-card .line:first-child{width:60%}
+.wf-card .line:last-child{width:35%}
+.wf-btn{display:inline-block;padding:8px 18px;border-radius:6px;font-size:11px;font-weight:600}
+.wf-btn-primary{background:#0f766e;color:#fff;border:none}
+.wf-btn-outline{border:1.5px solid #d1d5db;color:#78716c;background:#fff}
+.wf-img{width:100%;height:100px;border:1.5px dashed #d1d5db;border-radius:6px;background:#fafaf9;display:flex;align-items:center;justify-content:center;font-size:11px;color:#a8a29e;margin-bottom:10px}
+.wf-tag{display:inline-block;padding:3px 8px;border-radius:3px;background:#fef3c7;font-size:10px;color:#92400e;margin-right:4px}
+.wf-progress{width:100%;height:4px;background:#e7e5e4;border-radius:2px;margin:8px 0}
+.wf-progress .fill{height:100%;background:#0f766e;border-radius:2px}
+.wf-answer{background:#f0fdfa;border:1px solid #ccfbf1;border-radius:6px;padding:10px;font-size:11px;color:#0f766e;margin-bottom:8px}
+.wf-source{display:flex;align-items:center;gap:8px;padding:6px 8px;border:1px solid #e7e5e4;border-radius:4px;margin-bottom:4px;font-size:10px;color:#78716c}
+.wf-badge{display:inline-block;padding:2px 8px;border-radius:10px;background:#eff6ff;font-size:9px;color:#2563eb;margin-right:4px}
+
+.annotation{font-size:10px;color:#9ca3af;margin-top:8px;text-align:center;line-height:1.5}
+</style>
+</head>
+<body>
+
+<h1>记着（JiZhe）— 产品原型图</h1>
+<p class="sub">AI Memory Search · 12 屏完整用户流程</p>
+
+<!-- FLOW 1: Empty → Add -->
+<div class="flow-section">
+<div class="flow-title">01 空状态 → 保存内容入口</div>
+<div class="flow-desc">首次打开：极简首页，引导用户存入第一份记忆</div>
+<div class="screens">
+<div class="screen">
+<div class="topbar"><span class="title">记着</span><span class="dot"></span></div>
+<div class="body">
+<div class="label">空状态</div>
+<div style="text-align:center;padding:20px 0">
+<div style="width:48px;height:48px;border-radius:12px;background:#f5f5f4;margin:0 auto 12px"></div>
+<div style="font-size:13px;font-weight:600;margin-bottom:4px">你的第二大脑</div>
+<div style="font-size:11px;color:#78716c;margin-bottom:12px">保存截图、合同、票据、想法和重要信息</div>
+<div class="wf-btn wf-btn-primary" style="margin:0 auto">保存第一份记忆</div>
+</div>
+</div>
+<div class="annotation">引导文案降低首次使用门槛</div>
+</div>
+
+<div class="arrow">→</div>
+
+<div class="screen">
+<div class="topbar"><span class="title">记着</span><span class="dot"></span></div>
+<div class="body">
+<div class="label">添加面板</div>
+<div style="border:1.5px dashed #d1d5db;border-radius:6px;padding:12px;margin-bottom:10px">
+<div style="font-size:12px;font-weight:600;margin-bottom:4px">📄 输入文字</div>
+<div style="font-size:10px;color:#78716c">AI 自动生成标题、摘要和标签</div>
+</div>
+<div style="border:1.5px dashed #d1d5db;border-radius:6px;padding:12px">
+<div style="font-size:12px;font-weight:600;margin-bottom:4px">🖼 上传图片</div>
+<div style="font-size:10px;color:#78716c">拖拽或选择文件，自动 OCR + AI 理解</div>
+</div>
+</div>
+<div class="annotation">两种输入方式：文字/图片</div>
+</div>
+</div>
+</div>
+
+<!-- FLOW 2: Upload → OCR → AI -->
+<div class="flow-section">
+<div class="flow-title">02 上传图片 → OCR 识别 → AI 理解</div>
+<div class="flow-desc">拖拽图片后自动触发 OCR，完成后调用 DeepSeek 生成结构化信息</div>
+<div class="screens">
+<div class="screen">
+<div class="topbar"><span class="title">记着</span><span class="dot"></span></div>
+<div class="body">
+<div class="label">上传图片</div>
+<div style="border:2px dashed #d1d5db;border-radius:8px;padding:24px;text-align:center;margin-bottom:10px">
+<div style="font-size:11px;color:#78716c">拖拽文件到这里，或点击选择</div>
+<div style="font-size:10px;color:#a8a29e;margin-top:4px">支持 JPG、PNG、GIF 等图片格式</div>
+</div>
+<div class="wf-btn wf-btn-outline" style="width:100%;text-align:center">返回</div>
+</div>
+<div class="annotation">UploadZone：拖拽或点击选择文件</div>
+</div>
+
+<div class="arrow">→</div>
+
+<div class="screen">
+<div class="topbar"><span class="title">记着</span><span class="dot"></span></div>
+<div class="body">
+<div class="label">OCR 识别中</div>
+<div class="wf-img">[截图预览]</div>
+<div style="font-size:11px;color:#78716c">⏳ 正在 OCR 识别... 65%</div>
+<div class="wf-progress"><div class="fill" style="width:65%"></div></div>
+</div>
+<div class="annotation">tesseract.js 浏览器端识别<br>实时进度反馈</div>
+</div>
+
+<div class="arrow">→</div>
+
+<div class="screen">
+<div class="topbar"><span class="title">记着</span><span class="dot"></span></div>
+<div class="body">
+<div class="label">AI 理解完成</div>
+<div style="border:1px solid #e7e5e4;border-radius:4px;padding:8px;margin-bottom:6px;font-size:10px;color:#78716c">
+识别文字：<br>本科毕业论文成绩评定总表<br>综合成绩81分 评级良好</div>
+<div style="background:#ecfdf5;border:1px solid #a7f3d0;border-radius:4px;padding:6px 10px;font-size:10px;color:#059669">✓ AI 理解完成</div>
+<div style="display:flex;gap:8px;margin-top:10px">
+<div class="wf-btn wf-btn-outline" style="flex:1;text-align:center">放弃</div>
+<div class="wf-btn wf-btn-primary" style="flex:1;text-align:center">完成</div>
+</div>
+</div>
+<div class="annotation">OCR全文 + AI处理状态<br>用户确认后保存</div>
+</div>
+</div>
+</div>
+
+<!-- FLOW 3: Home with cards -->
+<div class="flow-section">
+<div class="flow-title">03 首页记忆卡片墙</div>
+<div class="flow-desc">存入多条内容后首页展示卡片网格，每张卡片显示 AI 生成的标题、摘要和标签</div>
+<div class="screens">
+<div class="screen">
+<div class="topbar"><span class="title">记着</span><span class="dot"></span></div>
+<div class="body">
+<div class="label">首页 — 有内容</div>
+<div class="wf-input" style="height:36px;font-size:10px;color:#a8a29e;display:flex;align-items:center;padding:0 12px">🔍 搜索你的记忆...</div>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
+<div class="wf-card" style="height:auto;flex-direction:column;align-items:stretch;padding:0;gap:0">
+<div style="height:60px;background:#e7e5e4;border-radius:4px 4px 0 0"></div>
+<div style="padding:8px">
+<div class="line" style="width:70%;height:5px;margin-bottom:3px"></div>
+<div class="line" style="width:50%;height:4px;margin-bottom:4px"></div>
+<span class="wf-tag">毕业论文</span><span class="wf-tag">成绩</span>
+</div>
+</div>
+<div class="wf-card" style="height:auto;flex-direction:column;align-items:stretch;padding:0;gap:0">
+<div style="height:60px;background:linear-gradient(135deg,#fef3c7,#fde68a);border-radius:4px 4px 0 0"></div>
+<div style="padding:8px">
+<div class="line" style="width:60%;height:5px;margin-bottom:3px"></div>
+<div class="line" style="width:45%;height:4px;margin-bottom:4px"></div>
+<span class="wf-tag">租房</span><span class="wf-tag">押金</span>
+</div>
+</div>
+</div>
+</div>
+<div class="annotation">自适应网格布局<br>每张卡片 = AI标题 + 摘要 + 标签</div>
+</div>
+
+<div class="arrow">→</div>
+
+<div class="screen">
+<div class="topbar"><span class="title">记着</span><span class="dot"></span></div>
+<div class="body">
+<div class="label">搜索 — 关键词匹配</div>
+<div class="wf-input" style="height:36px;font-size:11px;display:flex;align-items:center;padding:0 12px;border-color:#0f766e">成绩</div>
+<div style="font-size:10px;color:#78716c;margin-bottom:8px">找到 2 条结果</div>
+<div class="wf-card"><div class="thumb"></div><div class="lines"><div class="line"></div><div class="line"></div></div></div>
+<div class="wf-card"><div class="thumb"></div><div class="lines"><div class="line"></div><div class="line"></div></div></div>
+</div>
+<div class="annotation">中文分词搜索<br>支持关键词 + 语义匹配</div>
+</div>
+</div>
+</div>
+
+<!-- FLOW 4: Q&A -->
+<div class="flow-section">
+<div class="flow-title">04 自然语言问答</div>
+<div class="flow-desc">用户用自然语言提问，系统搜索 Top3 记忆 → DeepSeek 生成回答 → 附带来源引用</div>
+<div class="screens">
+<div class="screen">
+<div class="topbar"><span class="title">记着</span><span class="dot"></span></div>
+<div class="body">
+<div class="label">AI 问答</div>
+<div class="wf-input" style="height:36px;font-size:11px;display:flex;align-items:center;padding:0 12px;border-color:#0f766e">我的毕业论文成绩是多少？</div>
+<div class="wf-answer">
+<div style="font-weight:600;margin-bottom:4px">AI 回答</div>
+你的毕业论文总评成绩为81分，等级为良好。<br><br>
+来源引用：[1] [2]
+</div>
+<div class="wf-source"><span style="background:#0f766e;color:#fff;width:16px;height:16px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:9px">1</span> 毕业论文成绩评定表</div>
+<div class="wf-source"><span style="background:#0f766e;color:#fff;width:16px;height:16px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:9px">2</span> 论文检测报告</div>
+</div>
+<div class="annotation">AI回答 + 来源引用<br>可点击查看原始截图</div>
+</div>
+
+<div class="arrow">→</div>
+
+<div class="screen">
+<div class="topbar"><span class="title">记着</span><span class="dot"></span></div>
+<div class="body">
+<div class="label">结构化记忆详情</div>
+<div style="font-size:13px;font-weight:600;margin-bottom:6px">毕业论文成绩评定表</div>
+<span class="wf-tag">毕业论文</span><span class="wf-tag">成绩</span><span class="wf-tag">81分</span>
+<div style="background:#f0fdfa;border:1px solid #ccfbf1;border-radius:4px;padding:8px;margin:8px 0;font-size:10px;color:#0f766e">
+AI 摘要<br>毕业论文总评81分，等级良好
+</div>
+<div class="wf-img" style="height:80px">[原始截图]</div>
+<div style="border:1px solid #e7e5e4;border-radius:4px;padding:8px;font-size:10px;color:#78716c">
+OCR 识别文字<br>本科毕业论文成绩评定总表...</div>
+</div>
+<div class="annotation">点击卡片后查看完整信息<br>含AI摘要 + OCR全文 + 原始图片</div>
+</div>
+</div>
+</div>
+
+<!-- FLOW 5: OCR Fallback -->
+<div class="flow-section">
+<div class="flow-title">05 OCR 失败兜底</div>
+<div class="flow-desc">当 OCR 无法提取文字时，提供关键词输入框，确保内容仍可被检索</div>
+<div class="screens">
+<div class="screen">
+<div class="topbar"><span class="title">记着</span><span class="dot"></span></div>
+<div class="body">
+<div class="label">OCR 失败</div>
+<div class="wf-img">[截图预览]</div>
+<div style="border:1px solid #e7e5e4;border-radius:4px;padding:8px;margin-bottom:8px;font-size:10px;color:#78716c">识别文字：(未识别到文字)</div>
+<div style="background:#fffbeb;border:1px solid #fde68a;border-radius:6px;padding:10px;margin-bottom:8px">
+<div style="font-size:11px;font-weight:600;color:#92400e;margin-bottom:4px">⚠ 未提取到足够信息</div>
+<div style="font-size:10px;color:#b45309;margin-bottom:6px">OCR 未能从此图片中提取文字。你可以手动添加关键词。</div>
+<div style="border:1px solid #fcd34d;border-radius:4px;padding:6px;background:#fff;font-size:10px;color:#a8a29e;margin-bottom:6px">输入关键词，用逗号或空格分隔...</div>
+<div style="display:flex;gap:6px">
+<div class="wf-btn wf-btn-outline" style="flex:1;text-align:center;font-size:10px">重新识别</div>
+<div class="wf-btn wf-btn-primary" style="flex:1;text-align:center;font-size:10px;background:#d97706">保存</div>
+</div>
+</div>
+</div>
+<div class="annotation">不让任何记忆"沉没"<br>关键词兜底 = 产品可靠性保障</div>
+</div>
+</div>
+</div>
+
+</body>
+</html>

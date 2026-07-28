@@ -1,0 +1,27 @@
+{
+  "name": "记着 JiZhe 个人记忆搜索引擎",
+  "short_name": "记着",
+  "description": "本地优先的个人记忆搜索引擎，保存文字和图片，生成摘要、标签并支持记忆问答。",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#070b12",
+  "theme_color": "#08101a",
+  "categories": ["productivity", "utilities", "education"],
+  "lang": "zh-CN",
+  "icons": [
+    {
+      "src": "/icons/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    },
+    {
+      "src": "/icons/maskable.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "maskable"
+    }
+  ]
+}

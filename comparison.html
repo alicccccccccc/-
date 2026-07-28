@@ -1,0 +1,194 @@
+﻿<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>竞品分析 — 记着</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--ink:#1c1917;--body:#44403c;--muted:#78716c;--faint:#a8a29e;--line:#e7e5e4;--bg:#fafaf9;--surface:#fff;--accent:#d97706;--accent-bg:#fffbeb;--green:#059669;--green-bg:#ecfdf5;--red:#dc2626;--red-bg:#fef2f2}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;color:var(--body);background:var(--bg);line-height:1.7;font-size:15px;-webkit-font-smoothing:antialiased;padding:80px 24px}
+.wrap{max-width:900px;margin:0 auto}
+h1{font-size:36px;font-weight:700;color:var(--ink);margin-bottom:8px;letter-spacing:-0.02em}
+.subtitle{font-size:17px;color:var(--muted);margin-bottom:40px}
+h2{font-size:20px;font-weight:600;color:var(--ink);margin:48px 0 16px}
+h3{font-size:16px;font-weight:600;color:var(--ink);margin-bottom:8px}
+p{margin-bottom:12px;font-size:14px}
+table{width:100%;border-collapse:collapse;font-size:13px;margin:24px 0}
+th{text-align:left;padding:12px 14px;background:var(--surface);border-bottom:2px solid var(--line);font-weight:600;color:var(--ink);font-size:12px;white-space:nowrap}
+th:first-child{border-radius:8px 0 0 0}
+th:last-child{border-radius:0 8px 0 0}
+td{padding:12px 14px;border-bottom:1px solid var(--line);vertical-align:top;line-height:1.5}
+tr:last-child td{border-bottom:none}
+tr:nth-child(even){background:rgba(0,0,0,0.012)}
+.check{color:var(--green);font-weight:600}
+.cross{color:var(--faint)}
+.partial{color:var(--accent)}
+.us-row td{background:var(--accent-bg);font-weight:500}
+.us-row td:first-child{border-radius:0 0 0 8px}
+.us-row td:last-child{border-radius:0 0 8px 0}
+.tag{display:inline-block;font-size:11px;font-weight:600;padding:2px 8px;border-radius:4px;margin-right:4px}
+.tag-yes{background:var(--green-bg);color:var(--green)}
+.tag-no{background:var(--red-bg);color:var(--red)}
+.tag-partial{background:var(--accent-bg);color:var(--accent)}
+.product-card{border:1px solid var(--line);border-radius:12px;padding:20px;margin-bottom:16px;background:var(--surface)}
+.product-card h3{display:flex;align-items:center;gap:8px}
+.product-card .strength{font-size:13px;color:var(--green);margin-top:4px}
+.product-card .weakness{font-size:13px;color:var(--red);margin-top:2px}
+.diff-box{background:var(--accent-bg);border:1px solid #fde68a;border-radius:12px;padding:24px;margin-top:32px}
+.diff-box h2{color:var(--accent);margin-top:0}
+.diff-box ul{margin-left:20px;margin-top:8px}
+.diff-box li{font-size:14px;margin-bottom:6px;color:var(--body)}
+.criteria{display:flex;flex-wrap:wrap;gap:6px;margin:16px 0}
+.criteria span{font-size:12px;padding:4px 10px;border-radius:20px;border:1px solid var(--line);color:var(--muted)}
+.footnote{font-size:12px;color:var(--faint);margin-top:40px;padding-top:16px;border-top:1px solid var(--line)}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<h1>竞品分析</h1>
+<p class="subtitle">个人记忆检索工具 vs 团队知识协作工具 — 「记着」的差异化定位</p>
+
+<!-- Product overview -->
+<h2>竞品概览</h2>
+
+<div class="product-card">
+<h3>Mem.ai</h3>
+<p>AI 原生笔记应用。用户写笔记，AI 自动整理、关联、生成摘要。支持自然语言搜索历史笔记。核心用户是个人知识工作者和小型团队。</p>
+<p class="strength">优势：AI 自动组织能力强，搜索精准，时间线视图直观</p>
+<p class="weakness">劣势：需要主动输入笔记（非被动捕获），笔记格式为主（非多模态），团队协作定价高</p>
+</div>
+
+<div class="product-card">
+<h3>MyMind</h3>
+<p>视觉记忆管理工具。用户保存图片、链接、截图，AI 自动打标签分类。强调零整理和隐私。目前仅支持 iOS/macOS/Web。</p>
+<p class="strength">优势：零整理体验极致，自动标签准确，视觉设计优秀</p>
+<p class="weakness">劣势：不支持问答（只能搜索返回原始内容），不支持中文语义优化，纯云端存储</p>
+</div>
+
+<div class="product-card">
+<h3>Microsoft Recall</h3>
+<p>Windows 11 内置功能，每 5 秒截取屏幕快照，AI 构建可搜索的时间线。所有处理在设备端完成，数据不离开本机。</p>
+<p class="strength">优势：全自动捕获零操作，本地处理隐私强，时间线回溯独特</p>
+<p class="weakness">劣势：仅 Windows + Copilot+ PC，用户隐私争议大，资源占用高，无法选择性保存</p>
+</div>
+
+<div class="product-card">
+<h3>Notion AI</h3>
+<p>全能工作空间 + AI 增强。支持文档、数据库、Wiki。AI 可搜索整个工作空间、生成内容、回答问题。面向团队和组织。</p>
+<p class="strength">优势：功能最全面，AI Q&A 跨工作空间搜索，企业级协作</p>
+<p class="weakness">劣势：需要大量手动建库和组织，心智负担重，非个人记忆工具定位，云端存储</p>
+</div>
+
+<div class="product-card">
+<h3>ChatGPT Projects</h3>
+<p>OpenAI 推出的项目功能。用户可上传文件到指定项目，ChatGPT 在项目上下文中回答。支持自定义指令。</p>
+<p class="strength">优势：问答能力强，文件理解深度好，上下文持久化</p>
+<p class="weakness">劣势：非独立产品形态，不支持 OCR 图片文字提取，文件管理弱，纯云端</p>
+</div>
+
+<!-- Comparison table -->
+<h2>七维度对比</h2>
+<div class="criteria">
+<span>1. 图片记忆存储</span><span>2. OCR 能力</span><span>3. AI 结构化提取</span>
+<span>4. 自然语言问答</span><span>5. 来源引用</span><span>6. 本地优先</span>
+<span>7. 学生场景</span>
+</div>
+
+<table>
+<thead>
+<tr>
+<th>产品</th>
+<th>1. 图片记忆</th>
+<th>2. OCR</th>
+<th>3. 结构化提取</th>
+<th>4. 问答</th>
+<th>5. 来源引用</th>
+<th>6. 本地优先</th>
+<th>7. 学生场景</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Mem.ai</strong></td>
+<td><span class="tag tag-partial">手动上传</span></td>
+<td class="cross">&cross; 无</td>
+<td class="check">&check; 摘要、关联</td>
+<td class="check">&check; 强</td>
+<td class="partial">笔记引用</td>
+<td class="cross">&cross; 云端</td>
+<td class="partial">7/10</td>
+</tr>
+<tr>
+<td><strong>MyMind</strong></td>
+<td><span class="tag tag-yes">核心能力</span></td>
+<td class="partial">基础</td>
+<td class="partial">自动标签</td>
+<td class="cross">&cross; 无问答</td>
+<td class="cross">&cross; 无</td>
+<td class="cross">&cross; 云端</td>
+<td class="partial">5/10</td>
+</tr>
+<tr>
+<td><strong>Recall</strong></td>
+<td><span class="tag tag-yes">全自动截图</span></td>
+<td class="check">&check; Windows 级</td>
+<td class="check">&check; 时间线</td>
+<td class="check">&check; 语义搜索</td>
+<td class="check">&check; 截图回溯</td>
+<td class="check">&check; 纯本地</td>
+<td class="partial">6/10</td>
+</tr>
+<tr>
+<td><strong>Notion AI</strong></td>
+<td><span class="tag tag-partial">附件上传</span></td>
+<td class="cross">&cross; 无</td>
+<td class="check">&check; 数据库</td>
+<td class="check">&check; Q&A</td>
+<td class="check">&check; 页面引用</td>
+<td class="cross">&cross; 云端</td>
+<td class="partial">6/10</td>
+</tr>
+<tr>
+<td><strong>ChatGPT Projects</strong></td>
+<td><span class="tag tag-partial">文件上传</span></td>
+<td class="cross">&cross; 无</td>
+<td class="check">&check; 理解强</td>
+<td class="check">&check; 极强</td>
+<td class="cross">&cross; 无显式引用</td>
+<td class="cross">&cross; 云端</td>
+<td class="partial">7/10</td>
+</tr>
+<tr class="us-row">
+<td><strong>记着</strong></td>
+<td><span class="tag tag-yes">拖拽/点击</span></td>
+<td class="check">&check; tesseract.js</td>
+<td class="check">&check; 实体级</td>
+<td class="check">&check; 记忆问答</td>
+<td class="check">&check; 截图引用</td>
+<td class="check">&check; 本地优先</td>
+<td class="check">&check; 8/10</td>
+</tr>
+</tbody>
+</table>
+
+<!-- Differentiation -->
+<div class="diff-box">
+<h2>《记着》的差异化价值</h2>
+<p style="font-size:16px;font-weight:600;color:var(--ink);margin-bottom:16px">
+面向个人截图与文件记忆管理，而非团队知识协作。
+</p>
+<ul>
+<li><strong>被动捕获 vs 主动输入：</strong>Mem.ai 和 Notion 要求用户主动写笔记、建页面。「记着」接受截图和文件拖拽，用户无需改变任何行为习惯。</li>
+<li><strong>问答 + 来源引用：</strong>MyMind 只能搜索返回内容，不具备问答能力。ChatGPT Projects 问答强但无来源追溯。「记着」同时具备两者——AI 基于真实记忆生成回答，并引用原始截图。</li>
+<li><strong>本地优先：</strong>Recall 是唯一做到纯本地的竞品，但绑定 Windows 生态且全量录屏引发隐私争议。「记着」由用户主动选择存什么，数据在本地，不上传云端。</li>
+<li><strong>学生场景深度适配：</strong>竞品均为通用工具。记着面向学生的成绩单、课表、论文反馈、考试安排等高频截图场景做了关键词模板和结构化实体提取的专项优化。</li>
+<li><strong>零整理承诺：</strong>不做文件夹、不做标签、不做分类——这是产品不可妥协的底线。MyMind 是唯一接近这一理念的竞品，但它不支持问答和中文场景。</li>
+</ul>
+</div>
+
+<p class="footnote">分析时间：2026年6月。各产品功能以当前公开版本为准。评分基于产品定位与目标用户场景的匹配度，非绝对功能对比。</p>
+
+</div>
+</body>
+</html>

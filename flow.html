@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>产品流程 — 记着</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;background:#fff;color:#1c1917;display:flex;align-items:center;justify-content:center;min-height:100vh;padding:60px 40px}
+.flow{display:flex;flex-direction:column;align-items:center;gap:0;max-width:520px;width:100%}
+.step{display:flex;align-items:center;gap:16px;width:100%}
+.step-icon{width:44px;height:44px;border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:18px;font-weight:600;border:1.5px solid #e7e5e4;background:#fafaf9;color:#78716c}
+.step-body{flex:1}
+.step-title{font-size:15px;font-weight:600;color:#1c1917;line-height:1.3}
+.step-desc{font-size:12px;color:#a8a29e;margin-top:2px}
+.connector{width:2px;height:28px;background:#e7e5e4;margin-left:21px;align-self:flex-start;position:relative}
+.connector::after{content:"";position:absolute;bottom:-3px;left:-3px;width:8px;height:8px;border-right:2px solid #e7e5e4;border-bottom:2px solid #e7e5e4;transform:rotate(45deg)}
+.step.active .step-icon{background:#f0fdfa;border-color:#99f6e4;color:#0f766e}
+.step.output{margin-left:60px;width:calc(100% - 60px)}
+.output-tags{display:flex;gap:6px;flex-wrap:wrap;margin-top:4px}
+.output-tag{font-size:11px;padding:2px 10px;border-radius:20px;border:1px solid #e7e5e4;color:#78716c;background:#fafaf9}
+</style>
+</head>
+<body>
+<div class="flow">
+
+<div class="step">
+<div class="step-icon">1</div>
+<div class="step-body"><div class="step-title">上传内容</div><div class="step-desc">截图拖拽 / 文字输入 / 文件选择</div></div>
+</div>
+
+<div class="connector"></div>
+
+<div class="step">
+<div class="step-icon">2</div>
+<div class="step-body"><div class="step-title">OCR 文字识别</div><div class="step-desc">tesseract.js 本地提取图片中的文字</div></div>
+</div>
+
+<div class="connector"></div>
+
+<div class="step">
+<div class="step-icon">3</div>
+<div class="step-body"><div class="step-title">AI 理解内容</div><div class="step-desc">DeepSeek 分析文本语义与结构</div></div>
+</div>
+
+<div class="connector"></div>
+
+<div class="step">
+<div class="step-icon">4</div>
+<div class="step-body"><div class="step-title">结构化记忆提取</div><div class="step-desc">提取实体字段：成绩、金额、日期、机构等</div></div>
+</div>
+
+<div class="connector"></div>
+
+<div class="step output">
+<div class="step-title" style="font-size:13px;font-weight:500;color:#78716c;margin-bottom:8px">生成结构化数据</div>
+<div class="output-tags">
+<span class="output-tag">标题</span><span class="output-tag">摘要</span><span class="output-tag">标签</span><span class="output-tag">实体</span><span class="output-tag">时间戳</span>
+</div>
+</div>
+
+<div class="connector"></div>
+
+<div class="step">
+<div class="step-icon">5</div>
+<div class="step-body"><div class="step-title">本地存储</div><div class="step-desc">localStorage 持久化，数据不离开设备</div></div>
+</div>
+
+<div class="connector"></div>
+
+<div class="step active">
+<div class="step-icon">6</div>
+<div class="step-body"><div class="step-title">自然语言搜索</div><div class="step-desc">用户用口语提问，关键词 + 语义双引擎检索</div></div>
+</div>
+
+<div class="connector"></div>
+
+<div class="step active">
+<div class="step-icon">7</div>
+<div class="step-body"><div class="step-title">AI 生成回答</div><div class="step-desc">拼接 Top3 相关记忆 → DeepSeek 基于上下文回答</div></div>
+</div>
+
+<div class="connector"></div>
+
+<div class="step active">
+<div class="step-icon">8</div>
+<div class="step-body"><div class="step-title">来源引用</div><div class="step-desc">每条答案附带原始截图引用，可点击验证</div></div>
+</div>
+
+</div>
+</body>
+</html>

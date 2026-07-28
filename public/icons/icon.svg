@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <defs>
+    <linearGradient id="g" x1="90" y1="64" x2="424" y2="448" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#67e8f9"/>
+      <stop offset="1" stop-color="#5967f4"/>
+    </linearGradient>
+    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="18" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+  <rect width="512" height="512" rx="108" fill="#070b12"/>
+  <path d="M122 148h268v216H122z" fill="#0a1220" stroke="url(#g)" stroke-width="14"/>
+  <path d="M156 192h200M156 244h146M156 296h116" stroke="#bff7ff" stroke-width="22" stroke-linecap="round"/>
+  <circle cx="374" cy="318" r="38" fill="url(#g)" filter="url(#glow)"/>
+  <text x="256" y="432" text-anchor="middle" font-family="Arial, 'Microsoft YaHei', sans-serif" font-size="64" font-weight="700" fill="#e7eef8">记</text>
+</svg>

@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>记着 — AI Memory Search · Case Study</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--ink:#1c1917;--body:#44403c;--muted:#78716c;--faint:#a8a29e;--line:#e7e5e4;--bg:#fafaf9;--surface:#fff;--accent:#0f766e;--accent-bg:#f0fdfa;--green:#059669;--red:#dc2626}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;color:var(--body);background:var(--bg);line-height:1.7;font-size:15px;-webkit-font-smoothing:antialiased}
+.wrap{max-width:720px;margin:0 auto;padding:0 24px}
+section{padding:80px 0}
+hr{border:none;border-top:1px solid var(--line)}
+h1{font-size:44px;font-weight:700;color:var(--ink);line-height:1.15;letter-spacing:-0.02em}
+h2{font-size:22px;font-weight:600;color:var(--ink);margin-bottom:16px}
+h3{font-size:16px;font-weight:600;color:var(--ink);margin-bottom:6px}
+.label{font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:0.08em;color:var(--accent);margin-bottom:12px}
+p{margin-bottom:12px;font-size:14px}
+p:last-child{margin-bottom:0}
+.small{font-size:13px;color:var(--muted)}
+.hero{padding:120px 0 80px;text-align:center}
+.hero h1{font-size:52px;margin-bottom:12px}
+.hero .sub{font-size:18px;color:var(--muted);max-width:500px;margin:0 auto 24px}
+.hero .meta{font-size:13px;color:var(--faint);display:flex;gap:24px;justify-content:center}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:24px;margin-bottom:12px}
+.card h3{display:flex;align-items:center;gap:8px}
+.why{font-size:13px;color:var(--faint);margin-top:6px}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.grid3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px}
+@media(max-width:640px){.grid2,.grid3{grid-template-columns:1fr}}
+.flow-row{display:flex;align-items:center;gap:8px;margin:8px 0;font-size:14px}
+.flow-step{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:8px 14px;font-weight:600;color:var(--ink);white-space:nowrap;font-size:13px}
+.flow-arrow{color:var(--faint)}
+.badge{display:inline-block;font-size:11px;font-weight:600;padding:2px 8px;border-radius:4px}
+.badge-green{background:#ecfdf5;color:var(--green)}
+.badge-amber{background:var(--accent-bg);color:var(--accent)}
+.badge-gray{background:#f5f5f4;color:var(--muted)}
+.timeline{position:relative;padding-left:20px}
+.timeline::before{content:"";position:absolute;left:6px;top:0;bottom:0;width:2px;background:var(--line)}
+.tl-item{position:relative;margin-bottom:28px;padding-left:20px}
+.tl-item::before{content:"";position:absolute;left:-17px;top:5px;width:10px;height:10px;border-radius:50%;background:var(--accent)}
+.tl-item .version{font-size:12px;font-weight:700;color:var(--accent)}
+.tl-item h4{font-size:15px;margin:2px 0}
+.tl-item p{font-size:13px;color:var(--muted);margin:0}
+.reflect{margin-top:24px}
+.reflect-item{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:20px;margin-bottom:12px}
+.reflect-item .tag{font-size:11px;font-weight:600;padding:2px 8px;border-radius:4px;display:inline-block;margin-bottom:8px}
+.tag-green{background:#ecfdf5;color:var(--green)}
+.tag-amber{background:var(--accent-bg);color:var(--accent)}
+.tag-blue{background:#e0e7ff;color:#3730a3}
+.tag-red{background:#fef2f2;color:var(--red)}
+.placeholder{background:var(--surface);border:2px dashed var(--line);border-radius:12px;padding:32px;text-align:center;margin:16px 0}
+.placeholder .icon{font-size:32px;margin-bottom:8px}
+.placeholder .hint{font-size:13px;color:var(--muted)}
+.insight{border-left:3px solid var(--accent);padding:8px 16px;margin:16px 0;font-size:14px;color:var(--ink)}
+.btn{display:inline-block;padding:10px 20px;border-radius:10px;font-size:14px;font-weight:600;text-decoration:none;transition:all .15s;cursor:pointer}
+.btn-primary{background:var(--accent);color:#fff;border:none}
+.btn-primary:hover{filter:brightness(1.1)}
+.btn-outline{border:1.5px solid var(--line);color:var(--ink);background:var(--surface)}
+.btn-outline:hover{border-color:var(--accent);color:var(--accent)}
+footer{padding:40px 0;text-align:center;font-size:13px;color:var(--faint)}
+a{color:var(--accent);text-decoration:none}
+</style>
+</head>
+<body>
+
+<!-- ====== 1. HERO ====== -->
+<section class="hero"><div class="wrap">
+<p class="label">Case Study</p>
+<h1>记着</h1>
+<p class="sub">AI Memory Search — 让用户通过自然语言重新找回自己保存过的信息</p>
+<p style="font-size:14px;color:var(--muted);max-width:480px;margin:0 auto">用户上传截图或文字。系统自动 OCR、AI 理解、结构化存储。未来只需问「房东当时说押金多少？」，AI 直接返回答案并引用原始来源。</p>
+<div class="meta mt-4"><span>个人项目</span><span>2026年6月</span><span>React · tesseract.js · DeepSeek</span></div>
+<div style="margin-top:32px;display:flex;gap:12px;justify-content:center">
+<a href="comparison.html" class="btn btn-outline">竞品分析</a>
+<a href="flow.html" class="btn btn-outline">产品流程图</a>
+</div>
+</div></section><hr>
+
+<!-- ====== 2. 用户痛点 ====== -->
+<section><div class="wrap">
+<p class="label">用户痛点</p>
+<h2>存了，但永远找不到</h2>
+<div class="grid3">
+<div class="card"><h3>📸 截图即丢弃</h3><p class="small">看到重要信息的第一反应是截图。但截图混入几千张生活照片后，再也找不到。</p></div>
+<div class="card"><h3>🔍 搜索工具不够</h3><p class="small">微信只搜文字关键词、相册 OCR 不理解语义、笔记软件需要手动整理。三者都无法满足「一时兴起存进去，未来模糊想起找回来」的需求。</p></div>
+<div class="card"><h3>😰 不敢清理</h3><p class="small">「万一以后要用呢？」让用户积压数千条聊天记录和截图。但没有检索能力的存储只是负担。</p></div>
+</div>
+</div></section><hr>
+
+<!-- ====== 3. 产品方案 ====== -->
+<section><div class="wrap">
+<p class="label">产品方案</p>
+<h2>不做知识管理，只做记忆检索</h2>
+<p>核心假设：如果 AI 能在存入时自动理解内容，用户完全不需要整理。产品定位：一个面向个人数据的搜索引擎。</p>
+<div class="card">
+<h3>产品原则</h3>
+<div style="display:flex;flex-wrap:wrap;gap:6px;margin-top:8px">
+<span class="badge badge-green">零整理</span><span class="badge badge-green">本地优先</span><span class="badge badge-green">AI 语义搜索</span><span class="badge badge-gray">不做笔记</span><span class="badge badge-gray">不做知识管理</span><span class="badge badge-gray">不做 Agent</span>
+</div>
+</div>
+<div class="flow-row" style="flex-wrap:wrap;justify-content:center;margin-top:20px">
+<span class="flow-step">📤 上传</span><span class="flow-arrow">→</span><span class="flow-step">🔍 OCR</span><span class="flow-arrow">→</span><span class="flow-step">🧠 AI 理解</span><span class="flow-arrow">→</span><span class="flow-step">🗂 结构化</span><span class="flow-arrow">→</span><span class="flow-step">💾 本地存储</span><span class="flow-arrow">→</span><span class="flow-step">💬 问答</span><span class="flow-arrow">→</span><span class="flow-step">📎 来源</span>
+</div>
+</div></section><hr>
+
+<!-- ====== 4. 竞品分析 ====== -->
+<section><div class="wrap">
+<p class="label">竞品分析</p>
+<h2>现有方案都无法同时做到零整理、语义搜索与本地优先</h2>
+<div class="grid2">
+<div class="card"><h3>Mem.ai</h3><p class="small">AI 笔记，需主动输入。无 OCR，有问答但无来源引用。<span class="badge badge-amber">云端</span></p></div>
+<div class="card"><h3>MyMind</h3><p class="small">视觉记忆库，零整理。有自动标签但无问答能力。<span class="badge badge-amber">云端</span></p></div>
+<div class="card"><h3>Microsoft Recall</h3><p class="small">全自动截屏时间线，本地处理。隐私争议大，资源占用高。<span class="badge badge-green">本地</span></p></div>
+<div class="card"><h3>Notion AI</h3><p class="small">全功能工作空间。需手动建库，心智负担重，非个人记忆工具。<span class="badge badge-amber">云端</span></p></div>
+</div>
+<div style="margin-top:16px;text-align:center">
+<a href="comparison.html" class="btn btn-outline">完整竞品对比表 →</a>
+</div>
+<div class="insight mt-4"><strong>记着的差异化：</strong>面向个人截图记忆管理，而非团队知识协作。被动捕获替代主动输入，问答 + 来源引用并存，本地优先。</div>
+</div></section><hr>
+
+<!-- ====== 5. 核心流程 ====== -->
+<section><div class="wrap">
+<p class="label">核心流程</p>
+<h2>上传到问答的完整链路</h2>
+<div style="text-align:center;margin:24px 0">
+<a href="flow.html" class="btn btn-outline">查看完整流程图 →</a>
+</div>
+</div></section><hr>
+
+<!-- ====== 6. 产品截图 ====== -->
+<section><div class="wrap">
+<p class="label">产品截图</p>
+<h2>关键界面展示</h2>
+<div class="grid2">
+<div><img src="../screenshots/01-home.png" alt="空状态" style="width:100%;border-radius:12px;border:1px solid var(--line)"><p class="small mt-2" style="text-align:center">01 空状态</p></div>
+<div><img src="../screenshots/02-card-grid.png" alt="记忆卡片墙" style="width:100%;border-radius:12px;border:1px solid var(--line)"><p class="small mt-2" style="text-align:center">02 记忆卡片墙</p></div>
+<div><img src="../screenshots/03-upload.png" alt="拖拽上传" style="width:100%;border-radius:12px;border:1px solid var(--line)"><p class="small mt-2" style="text-align:center">03 拖拽上传</p></div>
+<div><img src="../screenshots/04-ocr-done.png" alt="OCR+AI完成" style="width:100%;border-radius:12px;border:1px solid var(--line)"><p class="small mt-2" style="text-align:center">04 OCR + AI 理解完成</p></div>
+<div><img src="../screenshots/05-ai-answer.png" alt="AI问答" style="width:100%;border-radius:12px;border:1px solid var(--line)"><p class="small mt-2" style="text-align:center">05 AI 问答界面</p></div>
+<div><img src="../screenshots/06-memory-detail.png" alt="详情页" style="width:100%;border-radius:12px;border:1px solid var(--line)"><p class="small mt-2" style="text-align:center">06 结构化记忆详情</p></div>
+<div><img src="../screenshots/07-fallback.png" alt="OCR失败兜底" style="width:100%;border-radius:12px;border:1px solid var(--line)"><p class="small mt-2" style="text-align:center">07 OCR 失败兜底</p></div>
+<div><img src="../screenshots/08-full-home.png" alt="完整首页" style="width:100%;border-radius:12px;border:1px solid var(--line)"><p class="small mt-2" style="text-align:center">10 完整首页</p></div>
+</div>
+</div></section><hr>
+
+<!-- ====== 8. 项目复盘 ====== -->
+<section><div class="wrap">
+<p class="label">项目复盘</p>
+<h2>四个版本，四个核心决策</h2>
+<div class="timeline">
+<div class="tl-item"><div class="version">V1 · OCR 搜索</div><h4>验证闭环</h4><p>截图 → 识别 → 关键词搜索。证明「存入 → 找到」可行。</p></div>
+<div class="tl-item"><div class="version">V2 · AI 理解</div><h4>云 + AI 替代本地</h4><p>Ollama 本地部署推理 300 秒/次 → 切换到 DeepSeek API，3 秒。速度优先。</p></div>
+<div class="tl-item"><div class="version">V3 · 自然语言问答</div><h4>「问问题」替代「搜关键词」</h4><p>Top3 记忆 → DeepSeek 生成答案 → 来源引用。产品从搜索引擎升级为记忆助手。</p></div>
+<div class="tl-item"><div class="version">V4 · 结构化记忆</div><h4>从模糊到精确</h4><p>实体提取让 AI 回答从「良好」变为「81 分，良好」。</p></div>
+</div>
+
+<h2 style="margin-top:48px">作为产品负责人的反思</h2>
+<div class="reflect">
+<div class="reflect-item"><span class="tag tag-green">获得经验</span><h3>「砍功能」比「加功能」更难</h3><p>拒绝分类、拒绝知识图谱、拒绝 Agent——每次「不做」都在保护核心承诺：零整理。</p></div>
+<div class="reflect-item"><span class="tag tag-amber">被推翻的决策</span><h3>Ollama 本地模型是错误选择</h3><p>2.3GB 模型下载 + 300 秒推理。追求技术纯粹性忽略了验证速度。切到 DeepSeek API 只用了 30 分钟。</p></div>
+<div class="reflect-item"><span class="tag tag-blue">如果重新做</span><h3>先做问答，后做 OCR</h3><p>MVP 大量时间花在 tesseract.js 调优上。但核心差异化是问答。应先做纯文本问答原型验证假设。</p></div>
+</div>
+</div></section><hr>
+
+<footer><div class="wrap"><p>记着 · AI Memory Search · 个人作品集 · 2026</p><p class="small mt-2">React · Vite · Tailwind CSS · tesseract.js · DeepSeek API · localStorage</p><p class="small mt-2"><a href="comparison.html">竞品分析</a> · <a href="flow.html">产品流程</a> · <a href="http://localhost:5173">产品主页</a></p></div></footer>
+
+</body></html>
