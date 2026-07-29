@@ -1,4 +1,4 @@
-const CACHE_NAME = "jizhe-shell-v1";
+const CACHE_NAME = "jizhe-shell-v2";
 const APP_SHELL = ["/", "/manifest.webmanifest", "/icons/icon.svg", "/icons/maskable.svg"];
 
 self.addEventListener("install", (event) => {
@@ -24,16 +24,11 @@ self.addEventListener("fetch", (event) => {
   if (request.method !== "GET") return;
   if (url.pathname.startsWith("/api/")) return;
 
-  if (request.mode === "navigate") {
-    event.respondWith(fetch(request).catch(() => caches.match("/")));
-    return;
-  }
-
   event.respondWith(
-    caches.match(request).then((cached) => cached || fetch(request).then((response) => {
+    fetch(request).then((response) => {
       const copy = response.clone();
       caches.open(CACHE_NAME).then((cache) => cache.put(request, copy));
       return response;
-    }).catch(() => cached))
+    }).catch(() => caches.match(request).then((cached) => cached || caches.match("/")))
   );
 });
